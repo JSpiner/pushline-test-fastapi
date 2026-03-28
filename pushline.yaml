@@ -1,0 +1,4 @@
+build:
+  dockerfile: Dockerfile
+  context: .
+port: 8000
