@@ -1,12 +1,21 @@
-build:
-  dockerfile: Dockerfile
-  context: .
-port: 8000
+services:
+  app:
+    dockerfile: Dockerfile
+    context: .
+    port: 8000
+    replicas: 1
+    cpu: "100m"
+    memory: "128Mi"
+    healthcheck:
+      path: /
+      interval: 10
 
 cron:
   - name: healthcheck
     schedule: "*/5 * * * *"
     command: "python -c 'print(\"health check ok\")'"
+    service: app
   - name: cleanup
     schedule: "0 3 * * *"
     command: "python -c 'print(\"cleanup done\")'"
+    service: app
