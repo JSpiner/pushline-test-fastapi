@@ -2,3 +2,11 @@ build:
   dockerfile: Dockerfile
   context: .
 port: 8000
+
+cron:
+  - name: healthcheck
+    schedule: "*/5 * * * *"
+    command: "python -c 'print(\"health check ok\")'"
+  - name: cleanup
+    schedule: "0 3 * * *"
+    command: "python -c 'print(\"cleanup done\")'"
