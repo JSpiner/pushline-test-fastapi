@@ -10,6 +10,28 @@ services:
       path: /
       interval: 10
 
+  frontend:
+    dockerfile: frontend/Dockerfile
+    context: frontend
+    port: 3000
+    replicas: 1
+    cpu: "100m"
+    memory: "128Mi"
+    healthcheck:
+      path: /
+      interval: 10
+
+  worker:
+    dockerfile: worker/Dockerfile
+    context: worker
+    port: 9000
+    replicas: 1
+    cpu: "100m"
+    memory: "128Mi"
+    healthcheck:
+      path: /
+      interval: 10
+
 cron:
   - name: healthcheck
     schedule: "*/5 * * * *"
