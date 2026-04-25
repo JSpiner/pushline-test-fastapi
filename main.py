@@ -9,7 +9,7 @@ start_time = time.time()
 
 @app.get("/")
 def root():
-    return {"message": "Hello from Pushline test app!", "version": "1.0.3"}
+    return {"message": "Hello from Pushline test app!", "version": "1.0.4-env-test"}
 
 
 @app.get("/health")
